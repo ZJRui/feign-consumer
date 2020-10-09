@@ -2,6 +2,7 @@ package com.sachin.feign.consumer.controller;
 
 import com.sachin.entity.User;
 import com.sachin.feign.consumer.service.HelloService;
+import com.sachin.feign.consumer.service.RefactorHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,9 @@ public class ConsumerController {
 
     @Autowired
     HelloService helloService;
+
+    @Autowired
+    RefactorHelloService refactorHelloService;
 
     @RequestMapping(value = "/feign-consumer", method = RequestMethod.GET)
     public String hello() {
@@ -32,5 +36,15 @@ public class ConsumerController {
 
     }
 
+    @RequestMapping(value = "/feign-consumer3", method = RequestMethod.GET)
+    public String hello3() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(refactorHelloService.hello("DDI"));
+        builder.append(refactorHelloService.hello("zhangsan", 20));
+        builder.append(refactorHelloService.hello(new User("lisi", 29)));
+
+        return builder.toString();
+
+    }
 
 }
