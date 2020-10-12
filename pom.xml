@@ -32,16 +32,20 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-            <version>2.2.5.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign -->
-        <dependency>
+        <!--springcloud dependencies中没有绝活 spring-cloud-starter-netflix-feign， 需要注意的是feign 聚合的 Ribbon和Hystrix的版本-->
+       <!-- <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
             <version>1.4.7.RELEASE</version>
         </dependency>
+-->
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
@@ -50,15 +54,31 @@
             <version>1.18.14</version>
             <scope>provided</scope>
         </dependency>
+        <!--
 
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>hello-service-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+                <dependency>
+                    <groupId>org.example</groupId>
+                    <artifactId>hello-service-api</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </dependency>
+        -->
 
 
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <!--要求 "Hoxton.SR8": "Spring Boot >=2.2.0.M4 and <2.3.5.BUILD-SNAPSHOT"-->
+                <version>Hoxton.SR8</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 </project>
