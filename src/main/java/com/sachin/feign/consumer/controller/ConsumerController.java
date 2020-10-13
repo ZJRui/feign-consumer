@@ -4,24 +4,26 @@ import com.sachin.entity.User;
 import com.sachin.feign.consumer.service.HelloService;
 import com.sachin.feign.consumer.service.RefactorHelloService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+
 public class ConsumerController {
 
 
     @Autowired
+    RefactorHelloService refactorHelloService;
+    //@Autowired
     HelloService helloService;
 
-    @Autowired
-    RefactorHelloService refactorHelloService;
 
     @RequestMapping(value = "/feign-consumer", method = RequestMethod.GET)
     public String hello() {
         return helloService.hello();
     }
+
 
 
     @RequestMapping(value = "/feign-consumer2", method = RequestMethod.GET)
